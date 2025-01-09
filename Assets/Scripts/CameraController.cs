@@ -9,11 +9,11 @@ public class CameraController : MonoBehaviour
     [SerializeField] float zoomDuration = 1f;
     [SerializeField] float zoomSpeedModifier=5f;
 
-    CinemachineCamera cc;
+    Camera cc;
 
     void Awake()
     {
-        cc = GetComponent<CinemachineCamera>();    
+        cc = GetComponent<Camera>();    
     }
 
     public void ChangeCameraFOV(float moveSpeed)
@@ -23,16 +23,16 @@ public class CameraController : MonoBehaviour
 
     IEnumerator CameraRoutine(float moveSpeed)
     {
-        float startPOV =cc.Lens.FieldOfView;
+        float startPOV =cc.fieldOfView;
         float targetFOV = Mathf.Clamp(startPOV+moveSpeed*zoomSpeedModifier,minFOV,maxFOV);
 
         float elapsedTime = 0f;
         while(elapsedTime < zoomDuration)
         {
             elapsedTime+= Time.deltaTime;
-            cc.Lens.FieldOfView = Mathf.Lerp(startPOV,targetFOV,elapsedTime/zoomDuration);
+            cc.fieldOfView = Mathf.Lerp(startPOV,targetFOV,elapsedTime/zoomDuration);
             yield return null;
         }
-        cc.Lens.FieldOfView = targetFOV;
+        cc.fieldOfView = targetFOV;
     }
 }
