@@ -8,13 +8,12 @@ public class CameraController : MonoBehaviour
     [SerializeField] float maxFOV = 120f;
     [SerializeField] float zoomDuration = 1f;
     [SerializeField] float zoomSpeedModifier=5f;
+    [SerializeField] Camera cc;
 
-    Camera cc;
-
-    void Awake()
-    {
-        cc = GetComponent<Camera>();    
-    }
+    //void Awake()
+    //{
+    //    cc = GetComponent<Camera>();    
+    //}
 
     public void ChangeCameraFOV(float moveSpeed)
     {
